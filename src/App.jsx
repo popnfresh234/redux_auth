@@ -16,8 +16,6 @@ class App extends Component {
   }
 
   setNavState( event, value ) {
-    console.log( value );
-    console.log( 'set nav state' );
     this.setState( {
       value,
     } );
