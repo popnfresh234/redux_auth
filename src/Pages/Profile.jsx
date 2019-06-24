@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import BasePage from '../BasePage.jsx';
+import React from 'react';
+import BasePage from './BasePage.jsx';
 
 class Public extends BasePage {
   render() {

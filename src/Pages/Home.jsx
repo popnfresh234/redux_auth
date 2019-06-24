@@ -1,5 +1,5 @@
 import React from 'react';
-import BasePage from '../BasePage.jsx';
+import BasePage from './BasePage.jsx';
 
 class Home extends BasePage {
   render() {

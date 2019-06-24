@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { Route, Switch } from 'react-router-dom';
 import NavBar from './NavBar/NavBar.jsx';
-import Home from './Home/Home.jsx';
-import Private from './Private/Private.jsx';
-import Profile from './Profile/Profile.jsx';
-import Info from './Info/Info.jsx';
+import Home from './Pages/Home.jsx';
+import Private from './Pages/Private.jsx';
+import Profile from './Pages/Profile.jsx';
+import Info from './Pages/Info.jsx';
 
 class App extends Component {
   constructor( props ) {
