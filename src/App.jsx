@@ -1,62 +1,59 @@
 import React, { Component } from 'react';
-import { Route, Switch } from 'react-router-dom';
+import { Route, Switch, withRouter } from 'react-router-dom';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import NavBar from './NavBar/NavBar.jsx';
 import Home from './Pages/Home.jsx';
 import Private from './Pages/Private.jsx';
 import Profile from './Pages/Profile.jsx';
 import Info from './Pages/Info.jsx';
+import { setNavPosition } from './navActions';
 
 class App extends Component {
-  constructor( props ) {
-    super( props );
-    this.state = {
-      value: 0,
-    };
-    this.setNavState = this.setNavState.bind( this );
+  componentDidMount() {
+    this.handleNav( );
   }
 
-  setNavState( event, value ) {
-    this.setState( {
-      value,
-    } );
+  componentDidUpdate() {
+    this.handleNav( );
   }
 
+  handleNav( ) {
+    const { setNavPos, history } = this.props;
+    setNavPos( history.location.pathname );
+  }
 
   render() {
-    const { value } = this.state;
     return (
       <div>
-        <NavBar
-          value={value}
-          setNavState={this.setNavState}
-        />
+        <NavBar />
         <Switch>
           <Route
             path="/home"
             exact
             render={props => (
-              <Home setNavState={this.setNavState} {...props} />
+              <Home {...props} />
             )}
           />
           <Route
             path="/profile"
             exact
             render={props => (
-              <Profile setNavState={this.setNavState} {...props} />
+              <Profile {...props} />
             )}
           />
           <Route
             path="/private"
             exact
             render={props => (
-              <Private setNavState={this.setNavState} {...props} />
+              <Private {...props} />
             )}
           />
           <Route
             path="/info"
             exact
             render={props => (
-              <Info setNavState={this.setNavState} {...props} />
+              <Info {...props} />
             )}
           />
         </Switch>
@@ -64,5 +61,14 @@ class App extends Component {
     );
   }
 }
+const mapDispatchToProps = dispatch => ( {
+  setNavPos: pos => dispatch( setNavPosition( pos ) ),
+} );
 
-export default App;
+App.propTypes = {
+  setNavPos: PropTypes.func.isRequired,
+  // eslint-disable-next-line react/forbid-prop-types
+  history: PropTypes.object.isRequired,
+};
+
+export default withRouter( connect( null, mapDispatchToProps )( App ) );

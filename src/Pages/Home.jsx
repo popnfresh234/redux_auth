@@ -1,7 +1,6 @@
-import React from 'react';
-import BasePage from './BasePage.jsx';
+import React, { Component } from 'react';
 
-class Home extends BasePage {
+class Home extends Component {
   render() {
     return (
       <h4>This is the Home Page</h4>

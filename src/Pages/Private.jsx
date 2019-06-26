@@ -1,8 +1,7 @@
-import React from 'react';
+import React, { Component } from 'react';
 import Typography from '@material-ui/core/Typography';
-import BasePage from './BasePage.jsx';
 
-class Private extends BasePage {
+class Private extends Component {
   render() {
     return (
       <Typography component="div" style={{ padding: 8 * 3 }}>

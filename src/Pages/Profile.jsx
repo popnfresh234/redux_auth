@@ -1,7 +1,7 @@
-import React from 'react';
-import BasePage from './BasePage.jsx';
+import React, { Component } from 'react';
 
-class Public extends BasePage {
+
+class Public extends Component {
   render() {
     return (
       <h4>This is the Profile Page</h4>
