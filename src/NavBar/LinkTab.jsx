@@ -1,30 +1,28 @@
-import React from 'react';
+import React, { Component } from 'react';
 import Tab from '@material-ui/core/Tab';
-import Typography from '@material-ui/core/Typography';
+import { connect } from 'react-redux';
+import { setNavPosition } from '../navActions';
 
+class LinkTab extends Component {
+  render() {
+    const { setNavPos, ...props } = this.props;
 
-function LinkTab( props ) {
-  return (
-    <Tab
-      component="a"
-      onClick={( event ) => {
-        event.preventDefault();
-        props.history.push( props.to );
-      }}
-      {...props}
-    />
-  );
+    return (
+      <Tab
+        component="a"
+        onClick={( event ) => {
+          event.preventDefault();
+          this.props.history.push( this.props.to );
+          setNavPos( this.props.to );
+        }}
+        {...props}
+      />
+    );
+  }
 }
 
-function TabContainer( props ) {
-  return (
-    <Typography component="div" style={{ padding: 8 * 3 }}>
-      {props.children}
-    </Typography>
-  );
-}
+const mapDispatchToProps = dispatch => ( {
+  setNavPos: pos => dispatch( setNavPosition( pos ) ),
+} );
 
-export default {
-  LinkTab,
-  TabContainer,
-};
+export default connect( null, mapDispatchToProps )( LinkTab );
